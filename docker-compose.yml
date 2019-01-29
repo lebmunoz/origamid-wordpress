@@ -1,0 +1,23 @@
+version: '3.1'
+
+services:
+
+  wordpress:
+    image: wordpress:5.0.3-php7.1-apache
+    ports:
+      - 8082:80
+    volumes:
+      - ~/Work/origamid-wordpress/wp-content:/var/www/html/wp-content
+    links:
+      - mysql
+    environment:
+      WORDPRESS_DB_PASSWORD: wp
+
+  mysql:
+    image: mysql:5.7.25
+    ports:
+      - 8083:3306
+    volumes:
+      - ~/Work/origamid-wordpress/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: wp
